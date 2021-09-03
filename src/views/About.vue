@@ -1,5 +1,14 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div id="mz-background">
+    <p>dsgsgdd</p>
   </div>
 </template>
+<script>
+export default {
+  name: "UnderworldPattern",
+
+}
+</script>
+<style lang="scss" scoped>
+
+</style>

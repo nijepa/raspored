@@ -7,6 +7,13 @@
 </template>
 
 <style lang="scss">
+
+
+@font-face {
+  font-family: "mazeletter-underworld";
+  src: local("mazeletter-underworld"),   url(./fonts/mazeletter-underworld.ttf) format("truetype");
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
