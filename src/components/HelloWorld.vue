@@ -11,9 +11,23 @@
         </ul>
     </ul> -->
     <div class="group">
-      <input type="radio" name="rb" id="rb1" value="AM" v-model="period" @change="togglePeriod('AM')" />
+      <input
+        type="radio"
+        name="rb"
+        id="rb1"
+        value="AM"
+        v-model="period"
+        @change="togglePeriod('AM')"
+      />
       <label for="rb1">PRE PODNE</label>
-      <input type="radio" name="rb" id="rb2" value="PM" v-model="period" @change="togglePeriod('PM')" />
+      <input
+        type="radio"
+        name="rb"
+        id="rb2"
+        value="PM"
+        v-model="period"
+        @change="togglePeriod('PM')"
+      />
       <label for="rb2">POSLE PODNE</label>
     </div>
     <!-- <input type="radio" id="one" value="AM" v-model="period" @change="togglePeriod('AM')">
@@ -23,7 +37,6 @@
     <label for="two">POSLE PODNE</label>
     <br> -->
 
-      
     <table>
       <thead>
         <tr>
@@ -33,16 +46,15 @@
       </thead>
 
       <tbody>
-        
         <tr
           v-for="(schooldayName, subjectName) in hoursByEmployee"
           :key="subjectName"
         >
-        <!-- <transition-group tag="tr" name="list" appear>  -->
+          <!-- <transition-group tag="tr" name="list" appear>  -->
           <td>{{ subjectName }}</td>
-          
+
           <td
-            v-for="(date) in dates"
+            v-for="date in dates"
             :key="date.id"
             @click="cellClick(schooldayName[id])"
           >
@@ -50,11 +62,8 @@
           </td>
           <!-- </transition-group>  -->
         </tr>
-        
       </tbody>
-      
     </table>
-    
   </div>
 </template>
 
@@ -65,7 +74,7 @@ export default {
   props: {
     msg: String,
   },
-  setup() {
+  setup(props, context) {
     //const cellHovered = ref(Number())
     const schooldays = ref([
       { id: 1, name: "Ponedeljak" },
@@ -94,60 +103,62 @@ export default {
       { id: 15, name: "Istorija" },
     ]);
     const timetable = ref([
-      { id: 1, schoolday: 1, subject: 1, nr: 1, period: 'AM' },
-      { id: 2, schoolday: 1, subject: 15, nr: 2, period: 'AM' },
-      { id: 3, schoolday: 1, subject: 3, nr: 3, period: 'AM' },
-      { id: 4, schoolday: 1, subject: 2, nr: 4, period: 'AM' },
-      { id: 5, schoolday: 1, subject: 4, nr: 5, period: 'AM' },
-      { id: 6, schoolday: 1, subject: 9, nr: 6, period: 'AM' },
-      { id: 7, schoolday: 2, subject: 6, nr: 1, period: 'AM' },
-      { id: 8, schoolday: 2, subject: 2, nr: 2, period: 'AM' },
-      { id: 9, schoolday: 2, subject: 1, nr: 3, period: 'AM' },
-      { id: 10, schoolday: 2, subject: 12, nr: 4, period: 'AM' },
-      { id: 11, schoolday: 2, subject: 12, nr: 5, period: 'AM' },
-      { id: 12, schoolday: 3, subject: 5, nr: 1, period: 'AM' },
-      { id: 13, schoolday: 3, subject: 5, nr: 2, period: 'AM' },
-      { id: 14, schoolday: 3, subject: 10, nr: 3, period: 'AM' },
-      { id: 15, schoolday: 3, subject: 1, nr: 4, period: 'AM' },
-      { id: 16, schoolday: 3, subject: 2, nr: 5, period: 'AM' },
-      { id: 17, schoolday: 4, subject: 6, nr: 1, period: 'AM' },
-      { id: 18, schoolday: 4, subject: 1, nr: 2, period: 'AM' },
-      { id: 19, schoolday: 4, subject: 9, nr: 3, period: 'AM' },
-      { id: 20, schoolday: 4, subject: 2, nr: 4, period: 'AM' },
-      { id: 21, schoolday: 4, subject: 4, nr: 5, period: 'AM' },
-      { id: 22, schoolday: 4, subject: 3, nr: 6, period: 'AM' },
-      { id: 23, schoolday: 5, subject: 8, nr: 1, period: 'AM' },
-      { id: 24, schoolday: 5, subject: 11, nr: 2, period: 'AM' },
-      { id: 25, schoolday: 5, subject: 2, nr: 3, period: 'AM' },
-      { id: 26, schoolday: 5, subject: 7, nr: 4, period: 'AM' },
-      { id: 1, schoolday: 1, subject: 4, nr: 1, period: 'PM' },
-      { id: 2, schoolday: 1, subject: 15, nr: 2, period: 'PM' },
-      { id: 3, schoolday: 1, subject: 2, nr: 3, period: 'PM' },
-      { id: 4, schoolday: 1, subject: 3, nr: 4, period: 'PM' },
-      { id: 5, schoolday: 1, subject: 9, nr: 5, period: 'PM' },
-      { id: 6, schoolday: 1, subject: 1, nr: 6, period: 'PM' },
-      { id: 7, schoolday: 2, subject: 6, nr: 1, period: 'PM' },
-      { id: 8, schoolday: 2, subject: 2, nr: 2, period: 'PM' },
-      { id: 9, schoolday: 2, subject: 1, nr: 3, period: 'PM' },
-      { id: 10, schoolday: 2, subject: 12, nr: 4, period: 'PM' },
-      { id: 11, schoolday: 2, subject: 12, nr: 5, period: 'PM' },
-      { id: 12, schoolday: 3, subject: 5, nr: 1, period: 'PM' },
-      { id: 13, schoolday: 3, subject: 5, nr: 2, period: 'PM' },
-      { id: 14, schoolday: 3, subject: 11, nr: 3, period: 'PM' },
-      { id: 15, schoolday: 3, subject: 1, nr: 4, period: 'PM' },
-      { id: 16, schoolday: 3, subject: 2, nr: 5, period: 'PM' },
-      { id: 17, schoolday: 4, subject: 9, nr: 1, period: 'PM' },
-      { id: 18, schoolday: 4, subject: 4, nr: 2, period: 'PM' },
-      { id: 19, schoolday: 4, subject: 2, nr: 3, period: 'PM' },
-      { id: 20, schoolday: 4, subject: 9, nr: 4, period: 'PM' },
-      { id: 21, schoolday: 4, subject: 4, nr: 5, period: 'PM' },
-      { id: 22, schoolday: 4, subject: 6, nr: 6, period: 'PM' },
-      { id: 23, schoolday: 5, subject: 8, nr: 1, period: 'PM' },
-      { id: 24, schoolday: 5, subject: 11, nr: 2, period: 'PM' },
-      { id: 25, schoolday: 5, subject: 2, nr: 3, period: 'PM' },
-      { id: 26, schoolday: 5, subject: 7, nr: 4, period: 'PM' },
+      { id: 1, schoolday: 1, subject: 1, nr: 1, period: "AM" },
+      { id: 2, schoolday: 1, subject: 15, nr: 2, period: "AM" },
+      { id: 3, schoolday: 1, subject: 3, nr: 3, period: "AM" },
+      { id: 4, schoolday: 1, subject: 2, nr: 4, period: "AM" },
+      { id: 5, schoolday: 1, subject: 4, nr: 5, period: "AM" },
+      { id: 6, schoolday: 1, subject: 9, nr: 6, period: "AM" },
+      { id: 7, schoolday: 2, subject: 6, nr: 1, period: "AM" },
+      { id: 8, schoolday: 2, subject: 2, nr: 2, period: "AM" },
+      { id: 9, schoolday: 2, subject: 1, nr: 3, period: "AM" },
+      { id: 10, schoolday: 2, subject: 12, nr: 4, period: "AM" },
+      { id: 11, schoolday: 2, subject: 12, nr: 5, period: "AM" },
+      { id: 12, schoolday: 3, subject: 5, nr: 1, period: "AM" },
+      { id: 13, schoolday: 3, subject: 5, nr: 2, period: "AM" },
+      { id: 14, schoolday: 3, subject: 11, nr: 3, period: "AM" },
+      { id: 15, schoolday: 3, subject: 1, nr: 4, period: "AM" },
+      { id: 16, schoolday: 3, subject: 2, nr: 5, period: "AM" },
+      { id: 17, schoolday: 4, subject: 6, nr: 1, period: "AM" },
+      { id: 18, schoolday: 4, subject: 1, nr: 2, period: "AM" },
+      { id: 19, schoolday: 4, subject: 9, nr: 3, period: "AM" },
+      { id: 20, schoolday: 4, subject: 2, nr: 4, period: "AM" },
+      { id: 21, schoolday: 4, subject: 4, nr: 5, period: "AM" },
+      { id: 22, schoolday: 4, subject: 3, nr: 6, period: "AM" },
+      { id: 23, schoolday: 5, subject: 8, nr: 1, period: "AM" },
+      { id: 24, schoolday: 5, subject: 11, nr: 2, period: "AM" },
+      { id: 25, schoolday: 5, subject: 2, nr: 3, period: "AM" },
+      { id: 26, schoolday: 5, subject: 7, nr: 4, period: "AM" },
+      { id: 27, schoolday: 5, subject: 10, nr: 5, period: "AM" },
+      { id: 1, schoolday: 1, subject: 4, nr: 1, period: "PM" },
+      { id: 2, schoolday: 1, subject: 15, nr: 2, period: "PM" },
+      { id: 3, schoolday: 1, subject: 2, nr: 3, period: "PM" },
+      { id: 4, schoolday: 1, subject: 3, nr: 4, period: "PM" },
+      { id: 5, schoolday: 1, subject: 9, nr: 5, period: "PM" },
+      { id: 6, schoolday: 1, subject: 1, nr: 6, period: "PM" },
+      { id: 7, schoolday: 2, subject: 6, nr: 1, period: "PM" },
+      { id: 8, schoolday: 2, subject: 2, nr: 2, period: "PM" },
+      { id: 9, schoolday: 2, subject: 1, nr: 3, period: "PM" },
+      { id: 10, schoolday: 2, subject: 12, nr: 4, period: "PM" },
+      { id: 11, schoolday: 2, subject: 12, nr: 5, period: "PM" },
+      { id: 12, schoolday: 3, subject: 5, nr: 1, period: "PM" },
+      { id: 13, schoolday: 3, subject: 5, nr: 2, period: "PM" },
+      { id: 14, schoolday: 3, subject: 11, nr: 3, period: "PM" },
+      { id: 15, schoolday: 3, subject: 1, nr: 4, period: "PM" },
+      { id: 16, schoolday: 3, subject: 2, nr: 5, period: "PM" },
+      { id: 17, schoolday: 4, subject: 9, nr: 1, period: "PM" },
+      { id: 18, schoolday: 4, subject: 4, nr: 2, period: "PM" },
+      { id: 19, schoolday: 4, subject: 2, nr: 3, period: "PM" },
+      { id: 20, schoolday: 4, subject: 9, nr: 4, period: "PM" },
+      { id: 21, schoolday: 4, subject: 4, nr: 5, period: "PM" },
+      { id: 22, schoolday: 4, subject: 6, nr: 6, period: "PM" },
+      { id: 23, schoolday: 5, subject: 8, nr: 1, period: "PM" },
+      { id: 24, schoolday: 5, subject: 11, nr: 2, period: "PM" },
+      { id: 25, schoolday: 5, subject: 2, nr: 3, period: "PM" },
+      { id: 26, schoolday: 5, subject: 7, nr: 4, period: "PM" },
+      { id: 27, schoolday: 5, subject: 10, nr: 5, period: "PM" },
     ]);
-    const period = ref('AM')
+    const period = ref("AM");
     const times = computed(() => {
       return timetable.value.map((t) => {
         let schooldayName = schooldays.value.filter(
@@ -160,7 +171,11 @@ export default {
     });
     //const switchPeriod = computed(() => period.value ? 'AM' : 'PM')
     //console.log(switchPeriod.value)
-    const header = computed(() => times.value.sort((a, b) => a.nr - b.nr).filter(t => t.period === period.value));
+    const header = computed(() =>
+      times.value
+        .sort((a, b) => a.nr - b.nr)
+        .filter((t) => t.period === period.value)
+    );
 
     const hoursByEmployee = computed(() => {
       return header.value.reduce((r, o) => {
@@ -191,9 +206,13 @@ export default {
       console.log(cellHovered.value)
     } */
 
-    const togglePeriod = (per) => {
-      period.value = per
-    }
+    const togglePeriod = (per, event) => {
+      period.value = per;
+      context.emit("customChange", event.target.value)
+    };
+
+
+    
     return {
       schooldays,
       subjects,
@@ -204,7 +223,8 @@ export default {
       cellClick,
       //mouseOver,
       togglePeriod,
-      period
+      period,
+
     };
   },
 };
@@ -218,6 +238,8 @@ $midnight: #2c3e50;
 $wisteria: #8e44ad;
 h1 {
   text-transform: uppercase;
+  font-family: "Concert One", cursive;
+  font-weight: 700;
 }
 h3 {
   margin: 40px 0 0;
@@ -263,7 +285,7 @@ table {
     background: #00cccc;
     color: $wisteria;
     text-transform: uppercase;
-    
+
     letter-spacing: 0.1em;
     &.last {
       border-right: none;
@@ -319,7 +341,7 @@ label {
     width: 1.4em;
     height: 1.4em;
     border: 2px solid $wisteria;
-    border-radius: .25em;
+    border-radius: 0.25em;
     z-index: -1;
   }
 }
@@ -342,37 +364,35 @@ input[type="radio"]:checked + label {
 /* Transition */
 label,
 label::before {
-  -webkit-transition: .25s all ease;
-  -o-transition: .25s all ease;
-  transition: .25s all ease;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
 }
 
-
-  .list-enter-from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  .list-enter-to {
-    opacity: 1;
-    transform: scale(1);
-  } 
-  .list-enter-active {
-    transition: all .5s ease; 
-  }
-  .list-leave-from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .list-leave-to {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  .list-leave-active {
-    transition: all .5s ease;
-    position: absolute;
-  }
-  .list-move {
-    transition: all .5s ease;
-  }
-
+.list-enter-from {
+  opacity: 0;
+  transform: scale(0.6);
+}
+.list-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+.list-enter-active {
+  transition: all 0.5s ease;
+}
+.list-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+.list-leave-to {
+  opacity: 0;
+  transform: scale(0.6);
+}
+.list-leave-active {
+  transition: all 0.5s ease;
+  position: absolute;
+}
+.list-move {
+  transition: all 0.5s ease;
+}
 </style>
