@@ -993,6 +993,7 @@ export default {
 <style lang="scss" scoped>
 .turtle {
   height: 130px;
+  margin-top: 2em;
 }
 .list-enter-from {
   opacity: 0;

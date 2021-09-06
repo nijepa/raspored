@@ -40,8 +40,8 @@
     <table>
       <thead>
         <tr>
-          <th>*</th>
-          <th v-for="date in dates" :key="date.id">{{ date }}</th>
+          <th>{{ period === 'AM' ? 'PRE PODNE' : 'POSLE PODNE'}}</th>
+          <th v-for="date in dates" :key="date.id" :class="period === 'AM' ? 'day' : 'night'">{{ date }}</th>
         </tr>
       </thead>
 
@@ -103,60 +103,60 @@ export default {
       { id: 15, name: "Istorija" },
     ]);
     const timetable = ref([
-      { id: 1, schoolday: 1, subject: 1, nr: 1, period: "AM" },
-      { id: 2, schoolday: 1, subject: 15, nr: 2, period: "AM" },
-      { id: 3, schoolday: 1, subject: 3, nr: 3, period: "AM" },
-      { id: 4, schoolday: 1, subject: 2, nr: 4, period: "AM" },
-      { id: 5, schoolday: 1, subject: 4, nr: 5, period: "AM" },
-      { id: 6, schoolday: 1, subject: 9, nr: 6, period: "AM" },
-      { id: 7, schoolday: 2, subject: 6, nr: 1, period: "AM" },
-      { id: 8, schoolday: 2, subject: 2, nr: 2, period: "AM" },
-      { id: 9, schoolday: 2, subject: 1, nr: 3, period: "AM" },
-      { id: 10, schoolday: 2, subject: 12, nr: 4, period: "AM" },
-      { id: 11, schoolday: 2, subject: 12, nr: 5, period: "AM" },
-      { id: 12, schoolday: 3, subject: 5, nr: 1, period: "AM" },
-      { id: 13, schoolday: 3, subject: 5, nr: 2, period: "AM" },
-      { id: 14, schoolday: 3, subject: 11, nr: 3, period: "AM" },
-      { id: 15, schoolday: 3, subject: 1, nr: 4, period: "AM" },
-      { id: 16, schoolday: 3, subject: 2, nr: 5, period: "AM" },
-      { id: 17, schoolday: 4, subject: 6, nr: 1, period: "AM" },
-      { id: 18, schoolday: 4, subject: 1, nr: 2, period: "AM" },
-      { id: 19, schoolday: 4, subject: 9, nr: 3, period: "AM" },
-      { id: 20, schoolday: 4, subject: 2, nr: 4, period: "AM" },
-      { id: 21, schoolday: 4, subject: 4, nr: 5, period: "AM" },
-      { id: 22, schoolday: 4, subject: 3, nr: 6, period: "AM" },
-      { id: 23, schoolday: 5, subject: 8, nr: 1, period: "AM" },
-      { id: 24, schoolday: 5, subject: 11, nr: 2, period: "AM" },
-      { id: 25, schoolday: 5, subject: 2, nr: 3, period: "AM" },
-      { id: 26, schoolday: 5, subject: 7, nr: 4, period: "AM" },
-      { id: 27, schoolday: 5, subject: 10, nr: 5, period: "AM" },
-      { id: 1, schoolday: 1, subject: 4, nr: 1, period: "PM" },
-      { id: 2, schoolday: 1, subject: 15, nr: 2, period: "PM" },
-      { id: 3, schoolday: 1, subject: 2, nr: 3, period: "PM" },
-      { id: 4, schoolday: 1, subject: 3, nr: 4, period: "PM" },
-      { id: 5, schoolday: 1, subject: 9, nr: 5, period: "PM" },
-      { id: 6, schoolday: 1, subject: 1, nr: 6, period: "PM" },
-      { id: 7, schoolday: 2, subject: 6, nr: 1, period: "PM" },
-      { id: 8, schoolday: 2, subject: 2, nr: 2, period: "PM" },
-      { id: 9, schoolday: 2, subject: 1, nr: 3, period: "PM" },
-      { id: 10, schoolday: 2, subject: 12, nr: 4, period: "PM" },
-      { id: 11, schoolday: 2, subject: 12, nr: 5, period: "PM" },
-      { id: 12, schoolday: 3, subject: 5, nr: 1, period: "PM" },
-      { id: 13, schoolday: 3, subject: 5, nr: 2, period: "PM" },
-      { id: 14, schoolday: 3, subject: 11, nr: 3, period: "PM" },
-      { id: 15, schoolday: 3, subject: 1, nr: 4, period: "PM" },
-      { id: 16, schoolday: 3, subject: 2, nr: 5, period: "PM" },
-      { id: 17, schoolday: 4, subject: 9, nr: 1, period: "PM" },
-      { id: 18, schoolday: 4, subject: 4, nr: 2, period: "PM" },
-      { id: 19, schoolday: 4, subject: 2, nr: 3, period: "PM" },
-      { id: 20, schoolday: 4, subject: 9, nr: 4, period: "PM" },
-      { id: 21, schoolday: 4, subject: 4, nr: 5, period: "PM" },
-      { id: 22, schoolday: 4, subject: 6, nr: 6, period: "PM" },
-      { id: 23, schoolday: 5, subject: 8, nr: 1, period: "PM" },
-      { id: 24, schoolday: 5, subject: 11, nr: 2, period: "PM" },
-      { id: 25, schoolday: 5, subject: 2, nr: 3, period: "PM" },
-      { id: 26, schoolday: 5, subject: 7, nr: 4, period: "PM" },
-      { id: 27, schoolday: 5, subject: 10, nr: 5, period: "PM" },
+      { id: 1, schoolday: 1, subject: 1, nr: 'I  08:00 – 08:45', period: "AM", startAt: '08:00' },
+      { id: 2, schoolday: 1, subject: 15, nr: 'II  08:50 – 09:35', period: "AM", startAt: '08:00' },
+      { id: 3, schoolday: 1, subject: 3, nr: 'III  09:55 – 10:40', period: "AM", startAt: '08:00' },
+      { id: 4, schoolday: 1, subject: 2, nr: 'IV  10:45 – 11:30', period: "AM", startAt: '08:00' },
+      { id: 5, schoolday: 1, subject: 4, nr: 'V  11:35 – 12:20', period: "AM", startAt: '08:00' },
+      { id: 6, schoolday: 1, subject: 9, nr: 'VI  12:25 – 13:10', period: "AM", startAt: '08:00' },
+      { id: 7, schoolday: 2, subject: 6, nr: 'I  08:00 – 08:45', period: "AM", startAt: '08:00' },
+      { id: 8, schoolday: 2, subject: 2, nr: 'II  08:50 – 09:35', period: "AM", startAt: '08:00' },
+      { id: 9, schoolday: 2, subject: 1, nr: 'III  09:55 – 10:40', period: "AM", startAt: '08:00' },
+      { id: 10, schoolday: 2, subject: 12, nr: 'IV  10:45 – 11:30', period: "AM", startAt: '08:00' },
+      { id: 11, schoolday: 2, subject: 12, nr: 'V  11:35 – 12:20', period: "AM", startAt: '08:00' },
+      { id: 12, schoolday: 3, subject: 5, nr: 'I  08:00 – 08:45', period: "AM", startAt: '08:00' },
+      { id: 13, schoolday: 3, subject: 5, nr: 'II  08:50 – 09:35', period: "AM" },
+      { id: 14, schoolday: 3, subject: 11, nr: 'III  09:55 – 10:40', period: "AM" },
+      { id: 15, schoolday: 3, subject: 1, nr: 'IV  10:45 – 11:30', period: "AM" },
+      { id: 16, schoolday: 3, subject: 2, nr: 'V  11:35 – 12:20', period: "AM" },
+      { id: 17, schoolday: 4, subject: 6, nr: 'I  08:00 – 08:45', period: "AM" },
+      { id: 18, schoolday: 4, subject: 1, nr: 'II  08:50 – 09:35', period: "AM" },
+      { id: 19, schoolday: 4, subject: 9, nr: 'III  09:55 – 10:40', period: "AM" },
+      { id: 20, schoolday: 4, subject: 2, nr: 'IV  10:45 – 11:30', period: "AM" },
+      { id: 21, schoolday: 4, subject: 4, nr: 'V  11:35 – 12:20', period: "AM" },
+      { id: 22, schoolday: 4, subject: 3, nr: 'VI  12:25 – 13:10', period: "AM" },
+      { id: 23, schoolday: 5, subject: 8, nr: 'I  08:00 – 08:45', period: "AM" },
+      { id: 24, schoolday: 5, subject: 11, nr: 'II  08:50 – 09:35', period: "AM" },
+      { id: 25, schoolday: 5, subject: 2, nr: 'III  09:55 – 10:40', period: "AM" },
+      { id: 26, schoolday: 5, subject: 7, nr: 'IV  10:45 – 11:30', period: "AM" },
+      { id: 27, schoolday: 5, subject: 10, nr: 'V  11:35 – 12:20', period: "AM" },
+      { id: 1, schoolday: 1, subject: 4, nr: 'I  14:00 – 14:45', period: "PM" },
+      { id: 2, schoolday: 1, subject: 15, nr: 'II  14:50 – 15:35', period: "PM" },
+      { id: 3, schoolday: 1, subject: 2, nr: 'III  15:55 – 16:40', period: "PM" },
+      { id: 4, schoolday: 1, subject: 3, nr: 'IV  16:45 – 17:30', period: "PM" },
+      { id: 5, schoolday: 1, subject: 9, nr: 'V  17:35 – 18:20', period: "PM" },
+      { id: 6, schoolday: 1, subject: 1, nr: 'VI  18:25 – 19:10', period: "PM" },
+      { id: 7, schoolday: 2, subject: 6, nr: 'I  14:00 – 14:45', period: "PM" },
+      { id: 8, schoolday: 2, subject: 2, nr: 'II  14:50 – 15:35', period: "PM" },
+      { id: 9, schoolday: 2, subject: 1, nr: 'III  15:55 – 16:40', period: "PM" },
+      { id: 10, schoolday: 2, subject: 12, nr: 'IV  16:45 – 17:30', period: "PM" },
+      { id: 11, schoolday: 2, subject: 12, nr: 'V  17:35 – 18:20', period: "PM" },
+      { id: 12, schoolday: 3, subject: 5, nr: 'I  14:00 – 14:45', period: "PM" },
+      { id: 13, schoolday: 3, subject: 5, nr: 'II  14:50 – 15:35', period: "PM" },
+      { id: 14, schoolday: 3, subject: 11, nr: 'III  15:55 – 16:40', period: "PM" },
+      { id: 15, schoolday: 3, subject: 1, nr: 'IV  16:45 – 17:30', period: "PM" },
+      { id: 16, schoolday: 3, subject: 2, nr: 'V  17:35 – 18:20', period: "PM" },
+      { id: 17, schoolday: 4, subject: 9, nr: 'I  14:00 – 14:45', period: "PM" },
+      { id: 18, schoolday: 4, subject: 4, nr: 'II  14:50 – 15:35', period: "PM" },
+      { id: 19, schoolday: 4, subject: 2, nr: 'III  15:55 – 16:40', period: "PM" },
+      { id: 20, schoolday: 4, subject: 1, nr: 'IV  16:45 – 17:30', period: "PM" },
+      { id: 21, schoolday: 4, subject: 3, nr: 'V  17:35 – 18:20', period: "PM" },
+      { id: 22, schoolday: 4, subject: 6, nr: 'VI  18:25 – 19:10', period: "PM" },
+      { id: 23, schoolday: 5, subject: 8, nr: 'I  14:00 – 14:45', period: "PM" },
+      { id: 24, schoolday: 5, subject: 11, nr: 'II  14:50 – 15:35', period: "PM" },
+      { id: 25, schoolday: 5, subject: 2, nr: 'III  15:55 – 16:40', period: "PM" },
+      { id: 26, schoolday: 5, subject: 7, nr: 'IV  16:45 – 17:30', period: "PM" },
+      { id: 27, schoolday: 5, subject: 10, nr: 'V  17:35 – 18:20', period: "PM" },
     ]);
     const period = ref("AM");
     const times = computed(() => {
@@ -190,12 +190,12 @@ export default {
       return dates; //.sort((a,b) => a - b)
     });
     console.log(header);
-    const res = [];
+    /*const res = [];
     const result = {};
     header.value.forEach((e) => {
       result[e.nr] = header.value.filter((h) => h.nr === e.nr);
       res.push(header.value.filter((h) => h.nr === e.nr));
-    });
+    });*/
 
     const cellClick = (id) => {
       console.log(id);
@@ -236,6 +236,16 @@ export default {
 $clouds: #ecf0f1;
 $midnight: #2c3e50;
 $wisteria: #8e44ad;
+$turquoise: rgb(0, 204, 204);
+$day: #f3f70c;
+$wisterian: #e095f7;
+.day {
+  background: $day !important;
+}
+.night {
+  background: $midnight !important;
+  color: $wisterian;
+}
 h1 {
   text-transform: uppercase;
   font-family: "Concert One", cursive;
@@ -260,7 +270,7 @@ table {
   margin: 25px auto;
   border-collapse: collapse;
   border: 1px solid #eee;
-  border-bottom: 2px solid #00cccc;
+  border-bottom: 2px solid $turquoise;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.05),
     0px 20px 20px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05);
   tr {
@@ -279,12 +289,16 @@ table {
     padding: 12px 35px;
     border-collapse: collapse;
     border-right: 1px solid $wisteria;
+    //border-bottom: 1px solid $wisteria;
     font-size: 1.2em;
   }
   th {
-    background: #00cccc;
+    background: $turquoise;
     color: $wisteria;
     text-transform: uppercase;
+    -webkit-box-shadow: 0px -2px 15px 5px rgba(0,0,0,0.82); 
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1), 0px -10px 20px rgba(0, 0, 0, 0.05),
+    0px -20px 20px rgba(0, 0, 0, 0.05), 0px -30px 20px rgba(0, 0, 0, 0.05);
 
     letter-spacing: 0.1em;
     &.last {
