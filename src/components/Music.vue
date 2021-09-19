@@ -1,96 +1,29 @@
 <template>
-  <body>
-    <div class="layout">
-      <div class="title">
-        <h1>Title</h1>
-        <p>Description</p>
-      </div>
+   <div class="navbar" id="myTopnav">
 
-      <nav>
-        <a href="index.php">Domů</a>
-        <a href="switcher.php">Menu 1</a>
-        <a href="#">Menu 2</a>
-        <a href="#">Menu 3</a>
-        <a href="#">Menu 4</a>
-        <a href="#">Menu 5</a>
-      </nav>
 
-      <main></main>
+        <div>
+          <h1>ddddddddddddddddd</h1>
+          <!--<video-background :src="require('@/assets/mov.mp4')" :sources="[require('@/assets/mov.mp4')]" :poster="require('@/assets/logo.png')">
+          </video-background>-->
 
-      <div class="sidebar">
-        <div class="box_container">
-          <div class="box">
-            <div class="box_title">
-              <i class="material-icons">menu</i>Uživatelský panel
-            </div>
-            <div class="box_content">
-              <ul>
-                <li><a href="#">Můj profil</a></li>
-                <li><a href="#">Uživatelé</a></li>
-                <li><a href="#">Nastavení</a></li>
-                <li><a href="#">Odhlásit se</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="box_title">
-              <i class="material-icons">menu</i>Admin panel
-            </div>
-            <div class="box_content">
-              <ul>
-                <li><a href="#">Správa uživatelů</a></li>
-                <li><a href="phpmyadmin">PhpMyAdmin</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="box_title">
-              <i class="material-icons">people</i>Online uživatelé
-            </div>
-            <div class="box_content">
-              <ul>
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-                <a href=""
-                  ><i class="material-icons box_offline">circle</i>User_+</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>sdfsdfdfds</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-                <a href=""
-                  ><i class="material-icons box_online">circle</i>Admin</a
-                >
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
-      <footer></footer>
-    </div>
-  </body>
+
+      
+   </div>
 </template>
 
-<script></script>
-
-<style></style>
+<script>
+//import VideoBackground from 'vue-responsive-video-background-player'
+export default {
+  components: {
+    //VideoBackground
+  }
+};
+</script>
+<style lang="scss">
+.h1 {
+  position: absolute;
+  top: 2em;
+}
+</style>

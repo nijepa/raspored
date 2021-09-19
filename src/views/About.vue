@@ -1,20 +1,15 @@
 <template>
-  <div id="mz-background">
-    <Music />
-  </div>
+  <Music class="tabs"  />
+  
 </template>
+
 <script>
 import Music from '../components/Music.vue'
 export default {
-  name: "UnderworldPattern",
-  components: {Music}
-
-  /* computed: {
-  currentTime() {
-    return Date.now();
+  name: 'Tabs',
+  components: {
+   Music
   },
-}, */
-
-};
+}
 </script>
 <style lang="scss" scoped></style>
