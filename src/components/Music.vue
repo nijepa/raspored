@@ -6,7 +6,7 @@
           <h1>ddddddddddddddddd</h1>
           <!--<video-background :src="require('@/assets/mov.mp4')" :sources="[require('@/assets/mov.mp4')]" :poster="require('@/assets/logo.png')">
           </video-background>-->
-
+           <img :src="getImage('http://localhost:8080/images/logo.png')" alt="">
         </div>
 
       
@@ -18,7 +18,12 @@
 export default {
   components: {
     //VideoBackground
-  }
+  },
+  methods: {
+      getImage(imagePath) {
+        return require(imagePath);
+      }
+    }
 };
 </script>
 <style lang="scss">

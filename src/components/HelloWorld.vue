@@ -114,6 +114,7 @@ export default {
       { id: 14, name: "Hemija" },
       { id: 15, name: "Istorija" },
       { id: 16, name: "Razredni" },
+      { id: 17, name: "Građansko" },
     ]);
     const timetable = ref([
       {
@@ -650,6 +651,7 @@ table {
     border-right: 1px solid $wisteria;
     //border-bottom: 1px solid $wisteria;
     font-size: 1.2em;
+    background: $turquoise;
   }
   th {
     background: $turquoise;
