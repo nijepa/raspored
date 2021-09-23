@@ -553,9 +553,9 @@ export default {
       console.log(cellHovered.value)
     } */
 
-    const togglePeriod = (per, event) => {
+    const togglePeriod = (per) => {
       period.value = per;
-      context.emit("customChange", event.target.value);
+      context.emit("customChange");
     };
 
     return {
@@ -585,7 +585,7 @@ $day: #f3f70c;
 $wisterian: #e095f7;
 .vue-responsive-videobg {
   height: 100vh;
-  position: absolute;
+  position: absolute !important;
   top: 0;
   z-index: -1;
 }

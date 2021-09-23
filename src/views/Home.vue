@@ -968,7 +968,7 @@
         />
       </svg>
     </transition>
-    <HelloWorld msg="raspored časova" @change="imag = !imag" />
+    <HelloWorld msg="raspored časova" @customChange="imag = !imag" />
   </div>
 </template>
 
