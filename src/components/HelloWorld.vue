@@ -578,10 +578,10 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Concert+One&display=swap");
 $clouds: #ecf0f1;
-$midnight: #2c3e50;
+$midnight: rgb(43, 61, 79);
 $wisteria: #8e44ad;
 $turquoise: rgb(0, 204, 204);
-$day: #f3f70c;
+$day: rgb(243, 247, 12);
 $wisterian: #e095f7;
 .vue-responsive-videobg {
   height: 100vh;
@@ -600,10 +600,10 @@ svg {
   left: 20%;
 }
 .day {
-  background: $day !important;
+  background: rgba(243, 247, 12, .7) !important;
 }
 .night {
-  background: $midnight !important;
+  background: rgba(43, 61, 79, .7) !important;
   color: $wisterian;
 }
 h1 {
@@ -651,10 +651,10 @@ table {
     border-right: 1px solid $wisteria;
     //border-bottom: 1px solid $wisteria;
     font-size: 1.2em;
-    background: $turquoise;
+    background: rgba(0, 204, 204, .8);
   }
   th {
-    background: $turquoise;
+    background: rgba(0, 204, 204, .8);
     color: $wisteria;
     text-transform: uppercase;
     -webkit-box-shadow: 0px -2px 15px 5px rgba(0, 0, 0, 0.82);
