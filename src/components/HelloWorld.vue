@@ -55,7 +55,7 @@
 
       <tbody>
         <tr
-          v-for="(schooldayName, subjectName) in hoursByEmployee"
+          v-for="(schooldayName, subjectName, id) in hoursByEmployee"
           :key="subjectName"
         >
           <!-- <transition-group tag="tr" name="list" appear>  -->
@@ -64,7 +64,7 @@
           <td
             v-for="date in dates"
             :key="date.id"
-            @click="cellClick(schooldayName[id])"
+            @click="cellClick(id)"
           >
             {{ schooldayName[date] }}
           </td>
@@ -115,12 +115,13 @@ export default {
       { id: 15, name: "Istorija" },
       { id: 16, name: "Razredni" },
       { id: 17, name: "Građansko" },
+      { id: 18, name: "Fizika" },
     ]);
     const timetable = ref([
       {
         id: 1,
         schoolday: 1,
-        subject: 1,
+        subject: 4,
         nr: "I  08:00 – 08:45",
         period: "AM",
         startAt: "08:00",
@@ -128,7 +129,7 @@ export default {
       {
         id: 2,
         schoolday: 1,
-        subject: 15,
+        subject: 18,
         nr: "II  08:50 – 09:35",
         period: "AM",
         startAt: "08:00",
@@ -136,7 +137,7 @@ export default {
       {
         id: 3,
         schoolday: 1,
-        subject: 3,
+        subject: 1,
         nr: "III  09:55 – 10:40",
         period: "AM",
         startAt: "08:00",
@@ -144,7 +145,7 @@ export default {
       {
         id: 4,
         schoolday: 1,
-        subject: 2,
+        subject: 6,
         nr: "IV  10:45 – 11:30",
         period: "AM",
         startAt: "08:00",
@@ -152,7 +153,7 @@ export default {
       {
         id: 5,
         schoolday: 1,
-        subject: 4,
+        subject: 9,
         nr: "V  11:35 – 12:20",
         period: "AM",
         startAt: "08:00",
@@ -160,23 +161,15 @@ export default {
       {
         id: 6,
         schoolday: 1,
-        subject: 9,
+        subject: 7,
         nr: "VI  12:25 – 13:10",
-        period: "AM",
-        startAt: "08:00",
-      },
-      {
-        id: 28,
-        schoolday: 1,
-        subject: 16,
-        nr: "VII  13:15 – 14:00",
         period: "AM",
         startAt: "08:00",
       },
       {
         id: 7,
         schoolday: 2,
-        subject: 6,
+        subject: 16,
         nr: "I  08:00 – 08:45",
         period: "AM",
         startAt: "08:00",
@@ -184,7 +177,7 @@ export default {
       {
         id: 8,
         schoolday: 2,
-        subject: 2,
+        subject: 4,
         nr: "II  08:50 – 09:35",
         period: "AM",
         startAt: "08:00",
@@ -192,7 +185,7 @@ export default {
       {
         id: 9,
         schoolday: 2,
-        subject: 1,
+        subject: 10,
         nr: "III  09:55 – 10:40",
         period: "AM",
         startAt: "08:00",
@@ -200,7 +193,7 @@ export default {
       {
         id: 10,
         schoolday: 2,
-        subject: 12,
+        subject: 2,
         nr: "IV  10:45 – 11:30",
         period: "AM",
         startAt: "08:00",
@@ -208,15 +201,23 @@ export default {
       {
         id: 11,
         schoolday: 2,
-        subject: 12,
+        subject: 5,
         nr: "V  11:35 – 12:20",
+        period: "AM",
+        startAt: "08:00",
+      },
+      {
+        id: 28,
+        schoolday: 2,
+        subject: 1,
+        nr: "VI  12:25 – 13:10",
         period: "AM",
         startAt: "08:00",
       },
       {
         id: 12,
         schoolday: 3,
-        subject: 5,
+        subject: 7,
         nr: "I  08:00 – 08:45",
         period: "AM",
         startAt: "08:00",
@@ -224,84 +225,84 @@ export default {
       {
         id: 13,
         schoolday: 3,
-        subject: 5,
+        subject: 15,
         nr: "II  08:50 – 09:35",
         period: "AM",
       },
       {
         id: 14,
         schoolday: 3,
-        subject: 11,
+        subject: 12,
         nr: "III  09:55 – 10:40",
         period: "AM",
       },
       {
         id: 15,
         schoolday: 3,
-        subject: 1,
+        subject: 12,
         nr: "IV  10:45 – 11:30",
         period: "AM",
       },
       {
         id: 16,
         schoolday: 3,
-        subject: 2,
+        subject: 3,
         nr: "V  11:35 – 12:20",
+        period: "AM",
+      },
+      {
+        id: 29,
+        schoolday: 3,
+        subject: 2,
+        nr: "VI  12:25 – 13:10",
         period: "AM",
       },
       {
         id: 17,
         schoolday: 4,
-        subject: 6,
+        subject: 2,
         nr: "I  08:00 – 08:45",
         period: "AM",
       },
       {
         id: 18,
         schoolday: 4,
-        subject: 1,
+        subject: 9,
         nr: "II  08:50 – 09:35",
         period: "AM",
       },
       {
         id: 19,
         schoolday: 4,
-        subject: 9,
+        subject: 10,
         nr: "III  09:55 – 10:40",
         period: "AM",
       },
       {
         id: 20,
         schoolday: 4,
-        subject: 2,
+        subject: 4,
         nr: "IV  10:45 – 11:30",
         period: "AM",
       },
       {
         id: 21,
         schoolday: 4,
-        subject: 4,
+        subject: 1,
         nr: "V  11:35 – 12:20",
-        period: "AM",
-      },
-      {
-        id: 22,
-        schoolday: 4,
-        subject: 3,
-        nr: "VI  12:25 – 13:10",
         period: "AM",
       },
       {
         id: 23,
         schoolday: 5,
-        subject: 8,
+        subject: 1,
         nr: "I  08:00 – 08:45",
         period: "AM",
       },
       {
         id: 24,
         schoolday: 5,
-        subject: 11,
+        subject: 18,
         nr: "II  08:50 – 09:35",
         period: "AM",
       },
@@ -315,48 +316,55 @@ export default {
       {
         id: 26,
         schoolday: 5,
-        subject: 7,
+        subject: 15,
         nr: "IV  10:45 – 11:30",
         period: "AM",
       },
       {
         id: 27,
         schoolday: 5,
-        subject: 10,
+        subject: 8,
         nr: "V  11:35 – 12:20",
         period: "AM",
       },
-      { id: 1, schoolday: 1, subject: 4, nr: "I  14:00 – 14:45", period: "PM" },
+      {
+        id: 31,
+        schoolday: 5,
+        subject: 6,
+        nr: "VI  12:25 – 13:10",
+        period: "AM",
+      },
+      { id: 1, schoolday: 1, subject: 7, nr: "I  14:00 – 14:45", period: "PM" },
       {
         id: 2,
         schoolday: 1,
-        subject: 15,
+        subject: 9,
         nr: "II  14:50 – 15:35",
         period: "PM",
       },
       {
         id: 3,
         schoolday: 1,
-        subject: 2,
+        subject: 6,
         nr: "III  15:55 – 16:40",
         period: "PM",
       },
       {
         id: 4,
         schoolday: 1,
-        subject: 3,
+        subject: 1,
         nr: "IV  16:45 – 17:30",
         period: "PM",
       },
-      { id: 5, schoolday: 1, subject: 9, nr: "V  17:35 – 18:20", period: "PM" },
+      { id: 5, schoolday: 1, subject: 13, nr: "V  17:35 – 18:20", period: "PM" },
       {
         id: 6,
         schoolday: 1,
-        subject: 1,
+        subject: 4,
         nr: "VI  18:25 – 19:10",
         period: "PM",
       },
-      { id: 7, schoolday: 2, subject: 6, nr: "I  14:00 – 14:45", period: "PM" },
+      { id: 7, schoolday: 2, subject: 5, nr: "I  14:00 – 14:45", period: "PM" },
       {
         id: 8,
         schoolday: 2,
@@ -374,134 +382,141 @@ export default {
       {
         id: 10,
         schoolday: 2,
-        subject: 12,
+        subject: 10,
         nr: "IV  16:45 – 17:30",
         period: "PM",
       },
       {
         id: 11,
         schoolday: 2,
-        subject: 12,
+        subject: 4,
         nr: "V  17:35 – 18:20",
+        period: "PM",
+      },
+      {
+        id: 32,
+        schoolday: 2,
+        subject: 3,
+        nr: "VI  18:25 – 19:10",
         period: "PM",
       },
       {
         id: 12,
         schoolday: 3,
-        subject: 5,
+        subject: 7,
         nr: "I  14:00 – 14:45",
         period: "PM",
       },
       {
         id: 13,
         schoolday: 3,
-        subject: 5,
+        subject: 12,
         nr: "II  14:50 – 15:35",
         period: "PM",
       },
       {
         id: 14,
         schoolday: 3,
-        subject: 11,
+        subject: 12,
         nr: "III  15:55 – 16:40",
         period: "PM",
       },
       {
         id: 15,
         schoolday: 3,
-        subject: 1,
+        subject: 2,
         nr: "IV  16:45 – 17:30",
         period: "PM",
       },
       {
         id: 16,
         schoolday: 3,
-        subject: 2,
+        subject: 9,
         nr: "V  17:35 – 18:20",
         period: "PM",
       },
       {
         id: 29,
         schoolday: 3,
-        subject: 16,
+        subject: 15,
         nr: "VI  18:25 – 19:10",
         period: "PM",
       },
       {
         id: 17,
         schoolday: 4,
-        subject: 9,
+        subject: 1,
         nr: "I  14:00 – 14:45",
         period: "PM",
       },
       {
         id: 18,
         schoolday: 4,
-        subject: 4,
+        subject: 16,
         nr: "II  14:50 – 15:35",
         period: "PM",
       },
       {
         id: 19,
         schoolday: 4,
-        subject: 2,
+        subject: 4,
         nr: "III  15:55 – 16:40",
         period: "PM",
       },
       {
         id: 20,
         schoolday: 4,
-        subject: 1,
+        subject: 10,
         nr: "IV  16:45 – 17:30",
         period: "PM",
       },
       {
         id: 21,
         schoolday: 4,
-        subject: 3,
+        subject: 2,
         nr: "V  17:35 – 18:20",
-        period: "PM",
-      },
-      {
-        id: 22,
-        schoolday: 4,
-        subject: 6,
-        nr: "VI  18:25 – 19:10",
         period: "PM",
       },
       {
         id: 23,
         schoolday: 5,
-        subject: 8,
+        subject: 1,
         nr: "I  14:00 – 14:45",
         period: "PM",
       },
       {
         id: 24,
         schoolday: 5,
-        subject: 11,
+        subject: 13,
         nr: "II  14:50 – 15:35",
         period: "PM",
       },
       {
         id: 25,
         schoolday: 5,
-        subject: 2,
+        subject: 9,
         nr: "III  15:55 – 16:40",
         period: "PM",
       },
       {
         id: 26,
         schoolday: 5,
-        subject: 7,
+        subject: 15,
         nr: "IV  16:45 – 17:30",
         period: "PM",
       },
       {
         id: 27,
         schoolday: 5,
-        subject: 10,
+        subject: 2,
         nr: "V  17:35 – 18:20",
+        period: "PM",
+      },
+      {
+        id: 33,
+        schoolday: 5,
+        subject: 8,
+        nr: "VI  18:25 – 19:10",
         period: "PM",
       },
     ]);
@@ -528,7 +543,7 @@ export default {
       return header.value.reduce((r, o) => {
         r[o.nr] ??= {};
         r[o.nr][o.schooldayName] = o.subjectName;
-        r[o.nr][o.idn] = o.id;
+        r[o.nr][o.id] = o.id;
         return r;
       }, {});
     });
@@ -595,9 +610,9 @@ svg {
   z-index: 1;
 }
 .hello {
-  position: absolute;
-  top: 20%;
-  left: 20%;
+  // position: absolute;
+  // top: 20%;
+  // left: 20%;
 }
 .day {
   background: rgba(243, 247, 12, .7) !important;

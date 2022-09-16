@@ -1,30 +1,45 @@
 <template>
-   <div class="navbar" id="myTopnav">
-
-
-        <div>
-          <h1>ddddddddddddddddd</h1>
-          <!--<video-background :src="require('@/assets/mov.mp4')" :sources="[require('@/assets/mov.mp4')]" :poster="require('@/assets/logo.png')">
-          </video-background>-->
-           <img :src="getImage('http://localhost:8080/images/logo.png')" alt="">
-        </div>
-
-      
-   </div>
+  <div class="product-feed">
+          <div ref="el" v-for="(Product,i) in ProductFeed" :key="i" class="product-item" >
+            <div ref="mu" class="product-feed"></div>
+            <div ref="mu" class="product-feed"></div>
+            <div ref="mu" class="product-feed">tzt</div>
+            {{Product}}
+          </div>
+    </div>
 </template>
 
+
 <script>
-//import VideoBackground from 'vue-responsive-video-background-player'
+import { nextTick, onMounted, ref } from '@vue/runtime-core';
 export default {
-  components: {
-    //VideoBackground
-  },
-  methods: {
-      getImage(imagePath) {
-        return require(imagePath);
-      }
+  data() {
+    return {
+      ProductFeed: [1,2,3,4]
     }
-};
+  },
+  setup(){
+    const el = ref(null)
+    const mu = ref(null)
+    async function loadFeed(){
+      await nextTick();
+      let element1 = mu.value.querySelector('.product-item'); 
+      console.log(el.value)
+      console.log(`element1`, element1) // this works and displays the element
+
+      let element2 = el.value.querySelector('.product-item'); 
+      console.log(`element2`, element2) // this comes back as null
+      }
+    
+
+   onMounted(() => {
+     //console.log(mu.value)
+      loadFeed()
+    })
+
+   return {el, mu}
+  }
+}
 </script>
 <style lang="scss">
 .h1 {
