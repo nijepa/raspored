@@ -83,10 +83,11 @@ export default {
   props: {
     msg: String,
   },
+  emits: ["customChange"],
   components: {
     VideoBackground
   },
-  setup(props, context) {
+  setup(props,  { emit }) {
     //const cellHovered = ref(Number())
     const schooldays = ref([
       { id: 1, name: "Ponedeljak" },
@@ -129,7 +130,7 @@ export default {
       {
         id: 2,
         schoolday: 1,
-        subject: 18,
+        subject: 13,
         nr: "II  08:50 – 09:35",
         period: "AM",
         startAt: "08:00",
@@ -302,7 +303,7 @@ export default {
       {
         id: 24,
         schoolday: 5,
-        subject: 18,
+        subject: 13,
         nr: "II  08:50 – 09:35",
         period: "AM",
       },
@@ -541,9 +542,10 @@ export default {
 
     const hoursByEmployee = computed(() => {
       return header.value.reduce((r, o) => {
+
         r[o.nr] ??= {};
         r[o.nr][o.schooldayName] = o.subjectName;
-        r[o.nr][o.id] = o.id;
+
         return r;
       }, {});
     });
@@ -551,7 +553,7 @@ export default {
       const dates = [...new Set(header.value.map((r) => r.schooldayName))];
       return dates; //.sort((a,b) => a - b)
     });
-    console.log(header);
+    console.log(hoursByEmployee);
     /*const res = [];
     const result = {};
     header.value.forEach((e) => {
@@ -570,7 +572,7 @@ export default {
 
     const togglePeriod = (per) => {
       period.value = per;
-      context.emit("customChange");
+      emit("customChange");
     };
 
     return {
