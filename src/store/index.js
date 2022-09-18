@@ -470,6 +470,11 @@ export default createStore({
       ]
     },
   },
+  getters: {
+    getTimetable: (state) => state.timetable,
+    getSchooldays: (state) => state.schooldays,
+    getSubjects: (state) => state.subjects,
+  },
   mutations: {},
   actions: {},
   modules: {},
