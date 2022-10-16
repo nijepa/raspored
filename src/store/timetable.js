@@ -398,7 +398,7 @@ export const useTimetable = defineStore("timetable", {
         {
           id: 55,
           schoolday: 5,
-          subject: 9,
+          subject: 6,
           nr: "III  15:55 – 16:40",
           period: "PM",
         },
